@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  # Backend Service
+  backend:
+    image: backend:1.0
+    container_name: react-login-app-backend
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongo
+
+  # Frontend Service
+  frontend:
+    image: frontend:1.0
+    container_name: react-login-app-frontend
+    ports:
+      - "3000:3000"
+
+  # MongoDB Service
+  mongo:
+    image: mongo
+    container_name: react-login-app-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
